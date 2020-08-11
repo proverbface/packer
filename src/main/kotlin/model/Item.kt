@@ -23,5 +23,5 @@ data class Item(val id: Int, val length: Int, var quantity: Int, val weight: Dou
         return result
     }
 
-
+    override fun toString(): String = "$id,$length,$quantity,$weight"
 }

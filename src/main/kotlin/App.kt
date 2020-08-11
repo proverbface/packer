@@ -24,10 +24,10 @@ fun main() {
 
     // Print out
     packs.forEach { pack ->
-        print("model.Pack Number: ${pack.id}\n")
+        print("Pack Number: ${pack.id}\n")
         pack.items.forEach { item ->
-            print("${item.id},${item.length},${item.quantity},${item.weight}\n")
+            print("${item}\n")
         }
-        print("model.Pack Length: ${pack.length()}, model.Pack Weight: ${pack.weight()}\n\n")
+        print("Pack Length: ${pack.length()}, Pack Weight: ${pack.weight()}\n\n")
     }
 }
