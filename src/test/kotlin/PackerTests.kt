@@ -9,6 +9,21 @@ import org.junit.jupiter.api.Assertions.*
 class PackerTests {
 
     @Test
+    fun packItemsSingleItem() {
+        val instruction = Instruction(
+            sort = PackSort.NATURAL,
+            maxItemsPerPack = 100,
+            maxWeightPerPack = 500.0
+        )
+        val items = mutableListOf<Item>()
+        items.add(Item(id = 1001, length = 6000, quantity = 50, weight = 50.0))
+
+        val packs = Packer.packItems(instruction.maxItemsPerPack,
+            instruction.maxWeightPerPack, items)
+        assertTrue(packs.size == 5)
+    }
+
+    @Test
     fun packItemsValid() {
         val instruction = Instruction(
             sort = PackSort.NATURAL,

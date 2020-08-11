@@ -35,7 +35,9 @@ object Packer {
 
                 if (diff > 0) {
                     items.remove(item)
-                    currentPack.items.add(item.copy())
+                    if (item.quantity > 0) {
+                        currentPack.items.add(item.copy())
+                    }
                 } else {
                     var maxQuantity = availableQuantity
                     if (availableQuantityByWeight < availableQuantity) {
@@ -44,10 +46,17 @@ object Packer {
 
                     val updatedItem = item.copy()
                     updatedItem.quantity = maxQuantity
-                    currentPack.items.add(updatedItem)
 
-                    item.quantity = item.quantity - maxQuantity
-                    packs.add(Pack(currentPack.id + 1))
+                    if (updatedItem.quantity > 0) {
+                        currentPack.items.add(updatedItem)
+
+                        item.quantity = item.quantity - maxQuantity
+                        if (item.quantity > 0) {
+                            packs.add(Pack(currentPack.id + 1))
+                        }
+                    } else {
+                        items.remove(item)
+                    }
                 }
             }
 
